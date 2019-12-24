@@ -1,1 +1,18 @@
 @import 'bootstrap.scss';
+body {
+    background-color: rgb(251, 251, 251);
+}
+
+.calc-container {
+    width: 20rem;
+    font-size: 1.5rem;
+
+    #display {
+        font-size: 2.5rem;
+    }
+
+    button {
+        // height: 5rem;
+        border-color: rgb(51, 50, 50);
+    }
+}

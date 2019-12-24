@@ -294,4 +294,15 @@ template {
 [hidden] {
   display: none !important; }
 
+body {
+  background-color: #fbfbfb; }
+
+.calc-container {
+  width: 20rem;
+  font-size: 1.5rem; }
+  .calc-container #display {
+    font-size: 2.5rem; }
+  .calc-container button {
+    border-color: #333232; }
+
 /*# sourceMappingURL=index.css.map */
