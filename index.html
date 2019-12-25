@@ -12,40 +12,120 @@
 <body>
     <div class="container calc-container bg-dark mt-lg-5 mt-2  pb-2 ">
         <div class="row">
-            <div id="display" class="col text-right mr-2 ml-2 p-2 text-white ">0</div>
+            <div id="display" class="col text-right mr-2 ml-2 p-2 text-white "></div>
         </div>
         <div class="row p-2">
             <button class="on-off-ac col rounded-circle mr-2 ml-2 p-2 bg-light">ON</button>
             <button class="on-off-ac col rounded-circle mr-2 ml-2 p-2 bg-light">OFF</button>
             <button class="on-off-ac col rounded-circle mr-2 ml-2 p-2 bg-light">AC</button>
-            <button class="col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">/</button>
+            <button class="operatorBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">/</button>
         </div>
         <div class="row p-2">
-            <button class="col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">7</button>
-            <button class="col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">8</button>
-            <button class="col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">9</button>
-            <button class="col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">x</button>
+            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">7</button>
+            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">8</button>
+            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">9</button>
+            <button class="operatorBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">x</button>
         </div>
         <div class="row p-2">
-            <button class="col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">4</button>
-            <button class="col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">5</button>
-            <button class="col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">6</button>
-            <button class="col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">-</button>
+            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">4</button>
+            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">5</button>
+            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">6</button>
+            <button class="operatorBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">-</button>
         </div>
         <div class="row p-2">
-            <button class="col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">1</button>
-            <button class="col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">2</button>
-            <button class="col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">3</button>
-            <button class="col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">+</button>
+            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">1</button>
+            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">2</button>
+            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">3</button>
+            <button class="operatorBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">+</button>
         </div>
         <div class="row p-2">
-            <button class="col-5 rounded-pill mr-2 ml-2 p-2 text-white bg-dark">0</button>
-            <button class="col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">,</button>
+            <button class="numBtn col-5 rounded-pill mr-2 ml-2 p-2 text-white bg-dark">0</button>
+            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">.</button>
             <button class="col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">=</button>
         </div>
     </div>
 
     <script>
+        //Your calculator is going to contain functions for all of the basic math
+        // operators you typically find on simple calculators, 
+        //so start by creating functions for the following items and testing them in your browser’s console.
+        function add(num1, num2){
+            return num1 + num2;
+        }
+
+        function subtract(num1, num2){
+            return num1 - num2;
+        }
+
+        function multiply(num1, num2){
+            return num1 * num2;
+        }
+
+        function divide(num1, num2){
+            return num1 / num2;
+        }
+        // let display = document.querySelector('#display');
+        // display.textContent = add(10,2);
+
+        console.log(add(10,2));
+        console.log(subtract(10,2));
+        console.log(multiply(10,2));
+        console.log(divide(10,2));
+
+        //Create a new function "operate" that takes an operator and 2 numbers 
+        //and then calls one of the above functions on the numbers.
+
+        function operate(operator, num1, num2) {
+            switch(operator) {
+                case '+' :
+                    return add(num1, num2);
+                    break;
+                case '-' :
+                    return subtract(num1, num2);
+                    break;
+                case '*':
+                    return multiply(num1, num2);
+                    break;
+                default:
+                    return divide(num1, num2);
+            }
+        }
+
+        console.log(operate('/', 10, 2));
+        // //Create the functions that populate the display when you click the number buttons...
+        let numBtn = document.querySelectorAll('.numBtn');
+        let display = document.querySelector('#display');
+        
+        numBtn.forEach(btn => {
+            // console.log(btn.textContent);
+            
+            btn.addEventListener('click', function(){
+                // console.log(btn.textContent);
+                display.textContent += btn.textContent;
+                // console.log(display.textContent);
+            });
+            
+        });
+
+        let operatorBtn = document.querySelectorAll('.operatorBtn');
+        operatorBtn.forEach(btn => {
+            btn.addEventListener('click', function(){
+                console.log(display.textContent);
+                //ovde radis racun
+                display.textContent = '';
+            });
+        });
+
+        
+        
+
+       
+        
+
+        //you should be storing the ‘display value’ in a variable somewhere for use in the next step.
+        
+
+        
         
     </script>
     

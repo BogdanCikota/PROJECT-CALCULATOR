@@ -297,6 +297,11 @@ template {
 body {
   background-color: #fbfbfb; }
 
+@media only screen and (max-width: 600px) {
+  body {
+    background-color: #343A40; }
+    body .calc-container {
+      box-shadow: none; } }
 .calc-container {
   width: 20rem;
   font-size: 1.5rem;
@@ -304,7 +309,8 @@ body {
   border-radius: 1rem; }
   .calc-container #display {
     font-size: 2.5rem;
-    border-bottom: 1px solid #fbfbfb; }
+    border-bottom: 1px solid #fbfbfb;
+    height: 4.5rem; }
   .calc-container button {
     border-color: #333232; }
   .calc-container .on-off-ac {
