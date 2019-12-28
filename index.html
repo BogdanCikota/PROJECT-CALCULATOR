@@ -24,7 +24,7 @@
             <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">7</button>
             <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">8</button>
             <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">9</button>
-            <button class="operatorBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">x</button>
+            <button class="operatorBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">*</button>
         </div>
         <div class="row p-2">
             <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">4</button>
@@ -41,7 +41,7 @@
         <div class="row p-2">
             <button class="numBtn col-5 rounded-pill mr-2 ml-2 p-2 text-white bg-dark">0</button>
             <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">.</button>
-            <button class="col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">=</button>
+            <button id="res" class="col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">=</button>
         </div>
     </div>
 
@@ -49,6 +49,9 @@
         //Your calculator is going to contain functions for all of the basic math
         // operators you typically find on simple calculators, 
         //so start by creating functions for the following items and testing them in your browser’s console.
+        let num1;
+        let operator;
+        let num2;
         function add(num1, num2){
             return num1 + num2;
         }
@@ -64,18 +67,13 @@
         function divide(num1, num2){
             return num1 / num2;
         }
-        // let display = document.querySelector('#display');
-        // display.textContent = add(10,2);
-
-        console.log(add(10,2));
-        console.log(subtract(10,2));
-        console.log(multiply(10,2));
-        console.log(divide(10,2));
+     
+        
 
         //Create a new function "operate" that takes an operator and 2 numbers 
         //and then calls one of the above functions on the numbers.
 
-        function operate(operator, num1, num2) {
+        function operate(num1, operator, num2) {
             switch(operator) {
                 case '+' :
                     return add(num1, num2);
@@ -91,40 +89,41 @@
             }
         }
 
-        console.log(operate('/', 10, 2));
-        // //Create the functions that populate the display when you click the number buttons...
-        let numBtn = document.querySelectorAll('.numBtn');
+        // console.log(operate(10, '/', 2));
+
         let display = document.querySelector('#display');
+        let numBtn = document.querySelectorAll('.numBtn');
         
-        numBtn.forEach(btn => {
-            // console.log(btn.textContent);
-            
-            btn.addEventListener('click', function(){
-                // console.log(btn.textContent);
-                display.textContent += btn.textContent;
-                // console.log(display.textContent);
-            });
-            
+        
+
+        //make function that keeps num1
+        num1 = function() {
+            // numBtn.forEach(btn => {
+            // btn.addEventListener('click', function(){
+            //     display.textContent += btn.textContent;
+            //     });
+            //     return display.textContent;
+            // });
+            return 25;
+        };
+
+        //make function that keeps operator
+
+        operator = function() {
+            return '+';
+        };
+
+        //make function that keeps num2
+
+        num2 = function() {
+            return 5;
+        };
+
+        
+        let res = document.getElementById('res');
+        res.addEventListener('click', function(){
+            display.textContent = operate(num1(), operator(), num2());
         });
-
-        let operatorBtn = document.querySelectorAll('.operatorBtn');
-        operatorBtn.forEach(btn => {
-            btn.addEventListener('click', function(){
-                console.log(display.textContent);
-                //ovde radis racun
-                display.textContent = '';
-            });
-        });
-
-        
-        
-
-       
-        
-
-        //you should be storing the ‘display value’ in a variable somewhere for use in the next step.
-        
-
         
         
     </script>
