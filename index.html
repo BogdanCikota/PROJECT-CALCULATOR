@@ -18,25 +18,25 @@
             <button class="on-off-ac col rounded-circle mr-2 ml-2 p-2 bg-light">ON</button>
             <button class="on-off-ac col rounded-circle mr-2 ml-2 p-2 bg-light">OFF</button>
             <button class="on-off-ac col rounded-circle mr-2 ml-2 p-2 bg-light">AC</button>
-            <button class="operatorBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">/</button>
+            <button class="numBtn operatorBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">/</button>
         </div>
         <div class="row p-2">
             <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">7</button>
             <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">8</button>
             <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">9</button>
-            <button class="operatorBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">*</button>
+            <button class="numBtn operatorBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">*</button>
         </div>
         <div class="row p-2">
             <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">4</button>
             <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">5</button>
             <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">6</button>
-            <button class="operatorBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">-</button>
+            <button class="numBtn operatorBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">-</button>
         </div>
         <div class="row p-2">
             <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">1</button>
             <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">2</button>
             <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">3</button>
-            <button class="operatorBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">+</button>
+            <button class="numBtn operatorBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">+</button>
         </div>
         <div class="row p-2">
             <button class="numBtn col-5 rounded-pill mr-2 ml-2 p-2 text-white bg-dark">0</button>
@@ -93,37 +93,100 @@
 
         let display = document.querySelector('#display');
         let numBtn = document.querySelectorAll('.numBtn');
+        let operatorTrueFalse = false;
+        let operatorBtn = document.querySelectorAll('.operatorBtn');
+        operatorBtn.forEach(btn => {
+            btn.addEventListener('click', function(){
+                operatorTrueFalse = true;
+                operator = btn.textContent;
+            });
+            
+        });
         
+        //napravi niz ciji su clanovi [0] = num1, [1] = operator, [2] = num2
+        let arr = [];
+        // console.log(arr)
+        let num = [];
+        numBtn.forEach(btn => {
+            btn.addEventListener('click', function(){
+                if(operatorTrueFalse === false ) {
+                    display.textContent += btn.textContent;
+                    num.push(display.textContent);
+                    console.log(num);
+                } else {
+                    arr.push(num[num.length-1]);
+                    arr.push(operator);
+                    operatorTrueFalse = false;
+                    display.textContent = '';
+                }
+                console.log(arr);
+            });
+        });
+
+     
+        let res = document.getElementById('res');
+        let operatorArr = [];
+        res.addEventListener('click', function(){
+            arr.push(num[num.length-1]);
+            operatorTrueFalse = false;
+            display.textContent = '';
+            // display.textContent = operate(num1(), operator(), num2());
+            // console.log(arr);
+        //    for (let i = 0; i < arr.length && arr.length>1; i++){
+            //    console.log(arr[i]);
+            
+            for (let i = 0; i < arr.length; i++){
+                if(arr[i] === '*' || arr[i] === '/' || arr[i] === '+' || arr[i] === '-') {
+                    operatorArr.push(arr[i]);
+                }
+            }
+        //    console.log(operatorArr);
+               
+            for (let i = 0; i< operatorArr.length; i++) {
+                num1 = arr[0];
+                num1 = parseFloat(num1);
+                operator = arr[1];
+                num2 = arr[2];
+                num2 = parseFloat(num2);
+                arr.shift(num1);
+                arr.shift(operator);
+                arr.shift(num2);
+                num1 = operate(num1, operator, num2); 
+                arr.unshift(num1);
+            }
+        //    console.log(num1);
+            display.textContent = arr;
+        });
         
 
         //make function that keeps num1
-        num1 = function() {
-            // numBtn.forEach(btn => {
-            // btn.addEventListener('click', function(){
-            //     display.textContent += btn.textContent;
-            //     });
-            //     return display.textContent;
-            // });
-            return 25;
-        };
+        // num1 = function() {
+        //     // numBtn.forEach(btn => {
+        //     // btn.addEventListener('click', function(){
+        //     //     display.textContent += btn.textContent;
+        //     //     });
+        //     //     return display.textContent;
+        //     // });
+        //     return 25;
+        // };
 
-        //make function that keeps operator
+        // //make function that keeps operator
 
-        operator = function() {
-            return '+';
-        };
+        // operator = function() {
+        //     return '+';
+        // };
 
-        //make function that keeps num2
+        // //make function that keeps num2
 
-        num2 = function() {
-            return 5;
-        };
+        // num2 = function() {
+        //     return 5;
+        // };
 
         
-        let res = document.getElementById('res');
-        res.addEventListener('click', function(){
-            display.textContent = operate(num1(), operator(), num2());
-        });
+        // let res = document.getElementById('res');
+        // res.addEventListener('click', function(){
+        //     display.textContent = operate(num1(), operator(), num2());
+        // });
         
         
     </script>
