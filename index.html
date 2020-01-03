@@ -89,8 +89,6 @@
             }
         }
 
-        // console.log(operate(10, '/', 2));
-
         let display = document.querySelector('#display');
         let numBtn = document.querySelectorAll('.numBtn');
         let operatorTrueFalse = false;
@@ -103,92 +101,74 @@
             
         });
         
-        //napravi niz ciji su clanovi [0] = num1, [1] = operator, [2] = num2
+        //make an array that has [0] = num1, [1] = operator, [2] = num2
         let arr = [];
-        // console.log(arr)
         let num = [];
         numBtn.forEach(btn => {
             btn.addEventListener('click', function(){
+                
                 if(operatorTrueFalse === false ) {
                     display.textContent += btn.textContent;
                     num.push(display.textContent);
-                    console.log(num);
+                    
                 } else {
                     arr.push(num[num.length-1]);
                     arr.push(operator);
                     operatorTrueFalse = false;
                     display.textContent = '';
                 }
-                console.log(arr);
+
+                arr = arr.filter(items => items !== undefined);
             });
         });
-
-     
-        let res = document.getElementById('res');
+      
+        let res = false;
+        let resbtn = document.getElementById('res');
         let operatorArr = [];
-        res.addEventListener('click', function(){
+        resbtn.addEventListener('click', function(){
+            res = true;
             arr.push(num[num.length-1]);
             operatorTrueFalse = false;
             display.textContent = '';
-            // display.textContent = operate(num1(), operator(), num2());
-            // console.log(arr);
-        //    for (let i = 0; i < arr.length && arr.length>1; i++){
-            //    console.log(arr[i]);
+           
             
             for (let i = 0; i < arr.length; i++){
                 if(arr[i] === '*' || arr[i] === '/' || arr[i] === '+' || arr[i] === '-') {
                     operatorArr.push(arr[i]);
                 }
             }
-        //    console.log(operatorArr);
-               
-            for (let i = 0; i< operatorArr.length; i++) {
-                num1 = arr[0];
-                num1 = parseFloat(num1);
-                operator = arr[1];
-                num2 = arr[2];
-                num2 = parseFloat(num2);
-                arr.shift(num1);
-                arr.shift(operator);
-                arr.shift(num2);
-                num1 = operate(num1, operator, num2); 
-                arr.unshift(num1);
+     
+           
+            for (let i = 0; i< operatorArr.length && arr.length>2; i++) {
+                
+                if(typeof(arr[0] !== 'number')) {
+                    num1 = arr[0];
+                    num1 = parseFloat(num1);
+                    operator = arr[1];
+                    num2 = arr[2];
+                    num2 = parseFloat(num2);
+                    arr.shift(num1);
+                    arr.shift(operator);
+                    arr.shift(num2);
+                    num1 = operate(num1, operator, num2);
+                    arr.unshift(num1);
+                } else {
+                    num1 = arr[0];
+                    operator = arr[1];
+                    num2 = arr[2];
+                    num2 = parseFloat(num2);
+                    arr.shift(num1);
+                    arr.shift(operator);
+                    arr.shift(num2);
+                    num1 = operate(num1, operator, num2); 
+                    arr.unshift(num1);
+                }
             }
-        //    console.log(num1);
-            display.textContent = arr;
-        });
-        
-
-        //make function that keeps num1
-        // num1 = function() {
-        //     // numBtn.forEach(btn => {
-        //     // btn.addEventListener('click', function(){
-        //     //     display.textContent += btn.textContent;
-        //     //     });
-        //     //     return display.textContent;
-        //     // });
-        //     return 25;
-        // };
-
-        // //make function that keeps operator
-
-        // operator = function() {
-        //     return '+';
-        // };
-
-        // //make function that keeps num2
-
-        // num2 = function() {
-        //     return 5;
-        // };
-
-        
-        // let res = document.getElementById('res');
-        // res.addEventListener('click', function(){
-        //     display.textContent = operate(num1(), operator(), num2());
-        // });
-        
-        
+       
+            display.textContent = arr[0];
+            num = [];
+            operatorTrueFalse = false;
+        });        
     </script>
     
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
