@@ -89,6 +89,10 @@
             }
         }
 
+        // Make the calculator work! You’ll need to store the first number that is input into
+        // the calculator when a user presses an operator, and also save which operation has been chosen and then
+        // operate() on them when the user presses the “=” key.
+
         let display = document.querySelector('#display');
         let numBtn = document.querySelectorAll('.numBtn');
         let operatorTrueFalse = false;
@@ -101,8 +105,10 @@
             
         });
         
-        //make an array that has [0] = num1, [1] = operator, [2] = num2
+        //make an array to store num1, oprator, num2
         let arr = [];
+
+        //make an array of numbers, and push() to arr
         let num = [];
         numBtn.forEach(btn => {
             btn.addEventListener('click', function(){
@@ -121,25 +127,38 @@
                 arr = arr.filter(items => items !== undefined);
             });
         });
-      
-        let res = false;
+
+        //operate() on numbers when the user presses the “=” key
+       
         let resbtn = document.getElementById('res');
-        let operatorArr = [];
-        resbtn.addEventListener('click', function(){
-            res = true;
+        let numOfMultiplicationDivision = [];
+        let multiplicationDivisionIndex;
+        let multiplicationDivision = [];
+        let additionSubtraction = [];
+        resbtn.addEventListener('click', function(){ 
             arr.push(num[num.length-1]);
             operatorTrueFalse = false;
             display.textContent = '';
-           
-            
-            for (let i = 0; i < arr.length; i++){
-                if(arr[i] === '*' || arr[i] === '/' || arr[i] === '+' || arr[i] === '-') {
-                    operatorArr.push(arr[i]);
-                }
+
+            //operations precedence
+            numOfMultiplicationDivision = arr.filter(item => item === '*' || item === '/');
+            //loop through arr, find Multiplication,Division points, operate() on them and send them back to arr
+            //for Addition/Subtraction
+            for(let i = 0; i < numOfMultiplicationDivision.length; i++) {
+                multiplicationDivisionIndex = arr.findIndex(item => item === '*' || item === '/');
+                multiplicationDivision.push(arr[multiplicationDivisionIndex-1]);
+                multiplicationDivision.push(arr[multiplicationDivisionIndex]);
+                multiplicationDivision.push(arr[multiplicationDivisionIndex+1]);
+                arr[multiplicationDivisionIndex-1] = operate(arr[multiplicationDivisionIndex-1], arr[multiplicationDivisionIndex],arr[multiplicationDivisionIndex+1]);
+                arr.splice(multiplicationDivisionIndex, 2);
             }
+            
+
+            additionSubtraction = arr.filter(item => item === '+' || item === '-');
      
-           
-            for (let i = 0; i< operatorArr.length && arr.length>2; i++) {
+           //loop through arr,
+           //( operate() on first three elements, return result to first position) * additionSubtraction.length
+            for (let i = 0; i< additionSubtraction.length && arr.length>2; i++) {
                 
                 if(typeof(arr[0] !== 'number')) {
                     num1 = arr[0];
@@ -164,7 +183,7 @@
                     arr.unshift(num1);
                 }
             }
-       
+            
             display.textContent = arr[0];
             num = [];
             operatorTrueFalse = false;
