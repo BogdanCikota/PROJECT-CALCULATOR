@@ -46,11 +46,10 @@
     </div>
 
     <script>
-        //Your calculator is going to contain functions for all of the basic math
-        // operators you typically find on simple calculators, 
-        //so start by creating functions for the following items and testing them in your browser’s console.
+//Your calculator is going to contain functions for all of the basic math
+// operators you typically find on simple calculators, 
+//so start by creating functions for the following items and testing them in your browser’s console.
         let num1;
-        let operator;
         let num2;
         function add(num1, num2){
             return num1 + num2;
@@ -69,10 +68,10 @@
         }
      
         
-
-        //Create a new function "operate" that takes an operator and 2 numbers 
-        //and then calls one of the above functions on the numbers.
-
+//Create a new function "operate" that takes an operator and 2 numbers 
+//and then calls one of the above functions on the numbers.
+        let operator;
+        
         function operate(num1, operator, num2) {
             switch(operator) {
                 case '+' :
@@ -89,9 +88,9 @@
             }
         }
 
-        // Make the calculator work! You’ll need to store the first number that is input into
-        // the calculator when a user presses an operator, and also save which operation has been chosen and then
-        // operate() on them when the user presses the “=” key.
+// Make the calculator work! You’ll need to store the first number that is input into
+// the calculator when a user presses an operator, and also save which operation has been chosen and then
+// operate() on them when the user presses the “=” key.
 
         let display = document.querySelector('#display');
         let numBtn = document.querySelectorAll('.numBtn');
@@ -105,7 +104,7 @@
             
         });
         
-        //make an array to store num1, oprator, num2
+        //store num1, oprator, num2 in an array
         let arr = [];
 
         //make an array of numbers, and push() to arr
@@ -128,7 +127,7 @@
             });
         });
 
-        //operate() on numbers when the user presses the “=” key
+        //operate() on arr when the user presses the “=” key
        
         let resbtn = document.getElementById('res');
         let numOfMultiplicationDivision = [];
@@ -141,6 +140,7 @@
             display.textContent = '';
 
             //operations precedence
+            
             numOfMultiplicationDivision = arr.filter(item => item === '*' || item === '/');
             //loop through arr, find Multiplication,Division points, operate() on them and send them back to arr
             //for Addition/Subtraction
