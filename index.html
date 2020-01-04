@@ -15,9 +15,9 @@
             <div id="display" class="col text-right mr-2 ml-2 p-2 text-white "></div>
         </div>
         <div class="row p-2">
-            <button class="on-off-ac col rounded-circle mr-2 ml-2 p-2 bg-light">ON</button>
-            <button class="on-off-ac col rounded-circle mr-2 ml-2 p-2 bg-light">OFF</button>
-            <button class="on-off-ac col rounded-circle mr-2 ml-2 p-2 bg-light">AC</button>
+            <button class="on-off-ac col rounded-circle mr-2 ml-2 p-2 bg-light">on/off</button>
+            <button id="ac" class="on-off-ac col rounded-circle mr-2 ml-2 p-2 bg-light">AC</button>
+            <button id="c" class="on-off-ac col rounded-circle mr-2 ml-2 p-2 bg-light">C</button>
             <button class="numBtn operatorBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">/</button>
         </div>
         <div class="row p-2">
@@ -40,7 +40,7 @@
         </div>
         <div class="row p-2">
             <button class="numBtn col-5 rounded-pill mr-2 ml-2 p-2 text-white bg-dark">0</button>
-            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">.</button>
+            <button id="decimalBtn" class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">.</button>
             <button id="res" class="col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">=</button>
         </div>
     </div>
@@ -71,7 +71,7 @@
 //Create a new function "operate" that takes an operator and 2 numbers 
 //and then calls one of the above functions on the numbers.
         let operator;
-        
+
         function operate(num1, operator, num2) {
             switch(operator) {
                 case '+' :
@@ -111,12 +111,23 @@
         let num = [];
         numBtn.forEach(btn => {
             btn.addEventListener('click', function(){
+//Disable the decimal button if there’s already one in the display
+                let decimal = 0;
+                let decimalBtn = document.querySelector('#decimalBtn');
+                decimalBtn.addEventListener('click', function(){
+                    decimal++;
+                    console.log(decimal);
+                    if(decimal > 0) {
+                        decimalBtn.disabled = 'true';
+                    }
+                });
                 
                 if(operatorTrueFalse === false ) {
                     display.textContent += btn.textContent;
                     num.push(display.textContent);
                     
                 } else {
+                    decimalBtn.disabled = false;
                     arr.push(num[num.length-1]);
                     arr.push(operator);
                     operatorTrueFalse = false;
@@ -136,8 +147,20 @@
         let additionSubtraction = [];
         resbtn.addEventListener('click', function(){ 
             arr.push(num[num.length-1]);
+
+//Display a snarky error message if the user tries to divide by 0
+
+            let errorIndex = arr.findIndex(item => item === '/');
+            if(arr[errorIndex+1] === '0'){
+                display.textContent = 'Error';
+                numBtn.forEach(btn => {
+                    btn.disabled = 'true';
+                });
+                return false;
+            }
             operatorTrueFalse = false;
             display.textContent = '';
+            
 
             //operations precedence
             
@@ -149,6 +172,7 @@
                 multiplicationDivision.push(arr[multiplicationDivisionIndex-1]);
                 multiplicationDivision.push(arr[multiplicationDivisionIndex]);
                 multiplicationDivision.push(arr[multiplicationDivisionIndex+1]);
+                
                 arr[multiplicationDivisionIndex-1] = operate(arr[multiplicationDivisionIndex-1], arr[multiplicationDivisionIndex],arr[multiplicationDivisionIndex+1]);
                 arr.splice(multiplicationDivisionIndex, 2);
             }
@@ -187,6 +211,21 @@
             display.textContent = arr[0];
             num = [];
             operatorTrueFalse = false;
+        });
+        
+//Pressing “ac” should wipe out any existing data
+        let ac = document.querySelector('#ac');
+        ac.addEventListener('click', function(){
+            num1 = '';
+            num2 = '';
+            operator = '';
+            arr = [];
+            num = [];
+            display.textContent = '';
+            operatorTrueFalse = false;
+            numBtn.forEach(btn => {
+                btn.disabled = false;
+            });
         });        
     </script>
     
