@@ -15,40 +15,40 @@
             <div id="display" class="col text-right mr-2 ml-2 p-2 text-white "></div>
         </div>
         <div class="row p-2">
-            <button class="on-off-ac col rounded-circle mr-2 ml-2 p-2 bg-light">on/off</button>
-            <button id="ac" class="on-off-ac col rounded-circle mr-2 ml-2 p-2 bg-light">AC</button>
-            <button id="c" class="on-off-ac col rounded-circle mr-2 ml-2 p-2 bg-light">C</button>
-            <button class="numBtn operatorBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">/</button>
+            <button id="onOff" class="on-off-ac col rounded-circle mr-2 ml-2 p-2 bg-light">ON</button>
+            <button id="ac" class="allBtn on-off-ac col rounded-circle mr-2 ml-2 p-2 bg-light">AC</button>
+            <button id="c" class="allBtn on-off-ac col rounded-circle mr-2 ml-2 p-2 bg-light">C</button>
+            <button class="allBtn numBtn operatorBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">/</button>
         </div>
         <div class="row p-2">
-            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">7</button>
-            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">8</button>
-            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">9</button>
-            <button class="numBtn operatorBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">*</button>
+            <button class="allBtn numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">7</button>
+            <button class="allBtn numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">8</button>
+            <button class="allBtn numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">9</button>
+            <button class="allBtn numBtn operatorBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">*</button>
         </div>
         <div class="row p-2">
-            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">4</button>
-            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">5</button>
-            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">6</button>
-            <button class="numBtn operatorBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">-</button>
+            <button class="allBtn numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">4</button>
+            <button class="allBtn numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">5</button>
+            <button class="allBtn numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">6</button>
+            <button class="allBtn numBtn operatorBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">-</button>
         </div>
         <div class="row p-2">
-            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">1</button>
-            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">2</button>
-            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">3</button>
-            <button class="numBtn operatorBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">+</button>
+            <button class="allBtn numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">1</button>
+            <button class="allBtn numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">2</button>
+            <button class="allBtn numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">3</button>
+            <button class="allBtn numBtn operatorBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">+</button>
         </div>
         <div class="row p-2">
-            <button class="numBtn col-5 rounded-pill mr-2 ml-2 p-2 text-white bg-dark">0</button>
-            <button id="decimalBtn" class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">.</button>
-            <button id="res" class="col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">=</button>
+            <button class="allBtn numBtn col-5 rounded-pill mr-2 ml-2 p-2 text-white bg-dark">0</button>
+            <button id="decimalBtn" class=" allBtn numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">.</button>
+            <button id="res" class="allBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">=</button>
         </div>
     </div>
 
     <script>
-//Your calculator is going to contain functions for all of the basic math
-// operators you typically find on simple calculators, 
-//so start by creating functions for the following items and testing them in your browser’s console.
+        //Your calculator is going to contain functions for all of the basic math
+        // operators you typically find on simple calculators, 
+        //so start by creating functions for the following items and testing them in your browser’s console.
         let num1;
         let num2;
         function add(num1, num2){
@@ -68,8 +68,8 @@
         }
      
         
-//Create a new function "operate" that takes an operator and 2 numbers 
-//and then calls one of the above functions on the numbers.
+        //Create a new function "operate" that takes an operator and 2 numbers 
+        //and then calls one of the above functions on the numbers.
         let operator;
 
         function operate(num1, operator, num2) {
@@ -88,9 +88,9 @@
             }
         }
 
-// Make the calculator work! You’ll need to store the first number that is input into
-// the calculator when a user presses an operator, and also save which operation has been chosen and then
-// operate() on them when the user presses the “=” key.
+        // Make the calculator work! You’ll need to store the first number that is input into
+        // the calculator when a user presses an operator, and also save which operation has been chosen and then
+        // operate() on them when the user presses the “=” key.
 
         let display = document.querySelector('#display');
         let numBtn = document.querySelectorAll('.numBtn');
@@ -109,14 +109,21 @@
 
         //make an array of numbers, and push() to arr
         let num = [];
+
+        // Add a “backspace” button, so the user can undo if they click the wrong
+        let backspace = document.querySelector('#c');
+        backspace.addEventListener('click',function(){
+            num.pop();
+            display.textContent = num[num.length-1];
+        });
+
         numBtn.forEach(btn => {
             btn.addEventListener('click', function(){
-//Disable the decimal button if there’s already one in the display
+        //Disable the decimal button if there’s already one in the display
                 let decimal = 0;
                 let decimalBtn = document.querySelector('#decimalBtn');
                 decimalBtn.addEventListener('click', function(){
                     decimal++;
-                    console.log(decimal);
                     if(decimal > 0) {
                         decimalBtn.disabled = 'true';
                     }
@@ -125,7 +132,6 @@
                 if(operatorTrueFalse === false ) {
                     display.textContent += btn.textContent;
                     num.push(display.textContent);
-                    
                 } else {
                     decimalBtn.disabled = false;
                     arr.push(num[num.length-1]);
@@ -147,8 +153,8 @@
         let additionSubtraction = [];
         resbtn.addEventListener('click', function(){ 
             arr.push(num[num.length-1]);
-
-//Display a snarky error message if the user tries to divide by 0
+            console.log(arr);
+        //Display a snarky error message if the user tries to divide by 0
 
             let errorIndex = arr.findIndex(item => item === '/');
             if(arr[errorIndex+1] === '0'){
@@ -213,9 +219,8 @@
             operatorTrueFalse = false;
         });
         
-//Pressing “ac” should wipe out any existing data
-        let ac = document.querySelector('#ac');
-        ac.addEventListener('click', function(){
+        //Pressing “ac” should wipe out any existing data
+        function resetAll(){
             num1 = '';
             num2 = '';
             operator = '';
@@ -226,7 +231,38 @@
             numBtn.forEach(btn => {
                 btn.disabled = false;
             });
+        }
+        let ac = document.querySelector('#ac');
+        ac.addEventListener('click', resetAll);
+
+        //on/off button
+        let allBtn = document.querySelectorAll('.allBtn');
+            allBtn.forEach(btn => {
+                btn.disabled = 'true';
+                btn.style.opacity = '0.6';
+            });
+        
+        let onOff = document.querySelector('#onOff');
+        onOff.addEventListener('click', function(){
+            if (onOff.textContent === 'ON') {
+                onOff.textContent = 'OFF';
+                allBtn.forEach(btn => {
+                    btn.disabled = false;
+                    btn.style.opacity = '1';
+                });
+            } else {
+                resetAll();
+                onOff.textContent = 'ON';
+                allBtn.forEach(btn => {
+                    btn.disabled = 'true';
+                    btn.style.opacity = '0.6';
+                });
+            }
         });        
+
+        //Future debugging:
+        //2+-3 = 1
+        //test 2*3 = 6.6+3 = NaN
     </script>
     
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
