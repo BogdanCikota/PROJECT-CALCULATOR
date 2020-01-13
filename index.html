@@ -13,66 +13,41 @@
   <body>
     <div class="container calc-container bg-dark mt-lg-5 mt-2  pb-2 ">
         <div class="row">
-            <div id="display" class="col text-right mr-2 ml-2 p-2 text-white "></div>
+            <div id="display" class="col text-right mr-3 ml-3 pl-0 pt-2 text-white "></div>
         </div>
         <div class="row p-2">
-            <button class="ac col rounded-circle mr-2 ml-2 p-2 bg-light">AC</button>
-            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 bg-light">(</button>
-            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 bg-light">)</button>
-            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">/</button>
+            <div id="onOff" class="on-off-ac col rounded-circle mr-2 ml-2 p-2">ON</div>
+            <button id="ac" class="allBtn on-off-ac col rounded-circle mr-2 ml-2 p-2 bg-light">AC</button>
+            <button id="c" class="allBtn on-off-ac col rounded-circle mr-2 ml-2 p-2 bg-light">C</button>
+            <button class="allBtn operatorBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">/</button>
         </div>
         <div class="row p-2">
-            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">7</button>
-            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">8</button>
-            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">9</button>
-            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">*</button>
+            <button class="allBtn numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">7</button>
+            <button class="allBtn numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">8</button>
+            <button class="allBtn numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">9</button>
+            <button class="allBtn operatorBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">*</button>
         </div>
         <div class="row p-2">
-            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">4</button>
-            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">5</button>
-            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">6</button>
-            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">-</button>
+            <button class="allBtn numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">4</button>
+            <button class="allBtn numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">5</button>
+            <button class="allBtn numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">6</button>
+            <button class="allBtn operatorBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">-</button>
         </div>
         <div class="row p-2">
-            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">1</button>
-            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">2</button>
-            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">3</button>
-            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">+</button>
+            <button class="allBtn numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">1</button>
+            <button class="allBtn numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">2</button>
+            <button class="allBtn numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">3</button>
+            <button class="allBtn operatorBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">+</button>
         </div>
         <div class="row p-2">
-            <button class="numBtn col rounded-pill mr-2 ml-2 p-2 text-white bg-dark">0</button>
-            <button class="numBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">.</button>
-            <button id="res" class="col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">=</button>
+            <button class="allBtn numBtn col-5 rounded-pill mr-2 ml-2 p-2 text-white bg-dark">0</button>
+            <button id="decimalBtn" class=" allBtn col rounded-circle mr-2 ml-2 p-2 text-white bg-dark">.</button>
+            <button type="button" id="res" class="allBtn col rounded-circle mr-2 ml-2 p-2 bg-warning text-white">=</button>
         </div>
     </div>
 
-    <script>
-        
-        let numBtn = document.querySelectorAll('.numBtn');
-        let display = document.querySelector('#display');
-        
-        numBtn.forEach(btn => {
-            btn.addEventListener('click', function(){
-                display.textContent += btn.textContent;
-            });
-        });
 
-        let res = document.getElementById('res');
-
-        res.addEventListener('click', function(){
-           display.textContent = eval(display.textContent);
-        });
-
-        let ac = document.querySelector('.ac');
-
-        ac.addEventListener('click', function(){
-            window.location.reload(true);
-        })
-        
-    </script>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/index.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
