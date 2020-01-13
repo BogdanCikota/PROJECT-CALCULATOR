@@ -5,9 +5,35 @@ body {
 
 @media only screen and (max-width: 600px) {
     body {
-      background-color: #343A40;
+      
+      background-color: black;
       .calc-container {
         box-shadow: none;
+        background-color: black !important;
+        font-size: 1.6rem;
+        button {
+          outline: none;
+          border: none;
+        }
+
+        .numBtn,
+        #decimalBtn {
+          background-color: rgb(92, 92, 92) !important;
+        }
+
+        .operatorBtn,
+        #res {
+          background-color: rgb(255, 167, 2) !important;
+        }
+
+        .on-off-ac {
+          background-color: rgb(178, 183, 187) !important;
+        }
+
+        #display {
+          font-size: 3.8rem;
+          height: 6.2rem;
+        }
       }
     }
   }
@@ -15,7 +41,6 @@ body {
 .calc-container {
     width: 20rem;
     font-size: 1.5rem;
-    // border: .1rem solid black !important;
     box-shadow: 10px 20px 15px rgba(0, 0, 0, 0.575);
     border-radius: 1rem;
 
@@ -24,15 +49,29 @@ body {
         border-bottom: 1px solid rgb(251, 251, 251);
         height: 4.5rem;
         overflow: hidden;
-        padding-left: .85rem !important;
+        
+        
     }
 
     button {
-        // height: 5rem;
         border-color: rgb(51, 50, 50);
+        &:focus {
+          outline: none;
+        }
     }
 
     .on-off-ac {
         font-size: 1.2rem;
+    }
+
+    #onOff {
+      padding-left: 1rem !important;
+      padding-top: .7rem !important;
+      cursor:pointer;
+      background-color: rgb(235, 235, 235) !important;
+      border-bottom: .1rem solid black;
+      &:hover {
+        background-color: rgb(178, 183, 187) !important;
+      }
     }
 }
