@@ -1,4 +1,4 @@
-//Your calculator is going to contain functions for all of the basic math
+        //Your calculator is going to contain functions for all of the basic math
         // operators you typically find on simple calculators, 
         //so start by creating functions for the following items and testing them in your browser’s console.
         let num1;
@@ -128,11 +128,15 @@
 
         //result function
         function result(){
-           str = display.textContent;
-           arr = str.split("");
-           if(arr[0] === '-'){
-               arr.unshift(0);
-           }
+            str = display.textContent;
+            arr = str.split("");
+            if(arr[0] === '-'){
+                arr.unshift(0);
+            }
+
+            if(arr[arr.length-1] === '+' || arr[arr.length-1] === '-' || arr[arr.length-1] === '*' || arr[arr.length-1] === '/') {
+                arr.pop();
+            }
            
            //make numbers from arr elements [2,5,+,2,5] = 25z
            //loop through arr, find operators
@@ -174,6 +178,8 @@
             }
            
            if(error === false) {
+            
+
             additionSubtraction = newArr.filter(item => item === '+' || item === '-');
      
             //loop through newArr, find additionSubtraction points,
@@ -206,63 +212,70 @@
            }
             
            
-        }
+        } 
 
         //listening result button
         let res = document.getElementById('res');
         res.addEventListener('click', result);
 
+        
         // Add keyboard support
         document.addEventListener('keypress',function(evt){
-            evt = evt || window.event;
-            let charCode = evt.keyCode || evt.which;
-            let charStr = String.fromCharCode(charCode);
-
-            //pressing number buttons
-            if(charStr === '9' || charStr === '8' || charStr === '7' || charStr === '6' || charStr === '5' || charStr === '4' || charStr === '3' || charStr === '2' || charStr === '1' || charStr === '0') {
-                if(decimalTrueFalse === true) {
-                    decimalBtn.disabled = 'true';
-                } else {
-                    decimalBtn.disabled = false;
+            if(onOff.textContent === 'OFF') {
+                evt = evt || window.event;
+                let charCode = evt.keyCode || evt.which;
+                let charStr = String.fromCharCode(charCode);
+    
+                //pressing number buttons
+                if(charStr === '9' || charStr === '8' || charStr === '7' || charStr === '6' || charStr === '5' || charStr === '4' || charStr === '3' || charStr === '2' || charStr === '1' || charStr === '0') {
+                    if(decimalTrueFalse === true) {
+                        decimalBtn.disabled = 'true';
+                    } else {
+                        decimalBtn.disabled = false;
+                    }
+    
+                    if(display.textContent === '0'){
+                        display.textContent = '';
+                    }
+                    display.textContent += charStr;
+                } else if(charStr === '+' || charStr === '-' || charStr === '*' || charStr === '/') {
+                    //pressing operator buttons
+                    display.textContent += charStr;
+                    displayArr = display.textContent;
+                    displayArr = displayArr.split('');
+                    decimalTrueFalse = false;
+                    let secondLast = displayArr[displayArr.length-2];
+                    let last = displayArr[displayArr.length-1];
+                    if((secondLast === '+' || secondLast === '-' || secondLast === '*' || secondLast === '/') && (last === '+' || last === '-' || last === '*' || last === '/')) {
+                        displayArr.splice(displayArr.length-2,1);
+                        displayArr = displayArr.join('');
+                        display.textContent = displayArr;
+                    }
+                } else if (charStr === '.') {
+                    //pressing decimal button
+                    decimalBtn.click();
+                } else if(charCode === 13) {
+                    //pressing enter
+                    result();
                 }
-
-                if(display.textContent === '0'){
-                    display.textContent = '';
-                }
-                display.textContent += charStr;
-            } else if(charStr === '+' || charStr === '-' || charStr === '*' || charStr === '/') {
-                //pressing operator buttons
-                display.textContent += charStr;
-                displayArr = display.textContent;
-                displayArr = displayArr.split('');
-                decimalTrueFalse = false;
-                let secondLast = displayArr[displayArr.length-2];
-                let last = displayArr[displayArr.length-1];
-                if((secondLast === '+' || secondLast === '-' || secondLast === '*' || secondLast === '/') && (last === '+' || last === '-' || last === '*' || last === '/')) {
-                    displayArr.splice(displayArr.length-2,1);
-                    displayArr = displayArr.join('');
-                    display.textContent = displayArr;
-                }
-            } else if (charStr === '.') {
-                //pressing decimal button
-                decimalBtn.click();
-            } else if(charCode === 13) {
-                //pressing enter
-                result();
             }
+            
         });
 
         
         document.addEventListener('keydown',function(evt){
-            evt = evt || window.event;
-            let charCode = evt.keyCode || evt.which;
-            //pressing delete button
-            if(charCode === 46) {
-                resetAll();
-            } else if(charCode === 8) {
-                //pressing backspace button
-                backspaceFunction();
+            if(onOff.textContent === 'OFF') {
+                evt = evt || window.event;
+                let charCode = evt.keyCode || evt.which;
+                //pressing delete button
+                if(charCode === 46) {
+                    resetAll();
+                } else if(charCode === 8) {
+                    //pressing backspace button
+                    backspaceFunction();
+                }
             }
+            
         });
 
 
